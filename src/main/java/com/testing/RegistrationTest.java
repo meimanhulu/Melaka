@@ -32,19 +32,19 @@ public class RegistrationTest {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         try {
             WebElement nameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R36l6:\"]")));
-            nameField.sendKeys("fssas"); 
+            nameField.sendKeys("Sas"); 
             WebElement phoneField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R156l6:\"]")));
-            phoneField.sendKeys("81482143466"); 
+            phoneField.sendKeys("81482723489000"); 
             WebElement businessNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R76l6:\"]")));
-            businessNameField.sendKeys("Toko Ria Ayu"); 
+            businessNameField.sendKeys(""); 
             WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"retail_store-:Ra96l6:\"]")));
             radioButton.click();
             WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rb6l6:\"]")));
-            emailField.sendKeys("ruhyk@gmail.com");
+            emailField.sendKeys("riaayugmail.com");
             WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rd6l6:\"]")));
-            passwordField.sendKeys("Hulkdola123"); 
+            passwordField.sendKeys("Surikiti"); 
             WebElement confirmPasswordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rf6l6:\"]")));
-            confirmPasswordField.sendKeys("Hulkdola123");
+            confirmPasswordField.sendKeys("Surikiti");
             WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"register__checkbox__tnc\"]")));
             checkbox.click();
 
@@ -58,7 +58,7 @@ public class RegistrationTest {
     if (driver.getCurrentUrl().contains("dashboard")) {
         System.out.println("Registrasi Berhasil Dilakukan");
     } else {
-        System.out.println("Valid Input Test Failed");
+        System.out.println("Registrasi Gagal Dilakukan");
     }
 } else {
     System.out.println("Submit button is disabled due to invalid input.");
