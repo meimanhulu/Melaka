@@ -31,14 +31,14 @@ public class Registration {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         try {
             WebElement nameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R36l6:\"]")));
-            nameField.sendKeys("Siqy"); 
+            nameField.sendKeys("Cash"); 
             WebElement nameErrorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[1]/div[2]/p")));
             if (nameErrorMessage.isDisplayed()) {
                 System.out.println("Error in Nama: " + nameErrorMessage.getText());
             }
 
             WebElement phoneField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R156l6:\"]")));
-            phoneField.sendKeys("8148191");
+            phoneField.sendKeys("8192121");
             WebElement phoneErrorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[2]/div/div[2]/p")));
             if (phoneErrorMessage.isDisplayed()) {
                 System.out.println("Error in Phone: " + phoneErrorMessage.getText());
@@ -55,21 +55,21 @@ public class Registration {
             businessTypeField.click();
 
             WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rb6l6:\"]")));
-            emailField.sendKeys("kucanggmail.com");
+            emailField.sendKeys("kuculgmail.com");
             WebElement emailErrorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[5]/div[2]/p")));
             if (emailErrorMessage.isDisplayed()) {
                 System.out.println("Error in Email: " + emailErrorMessage.getText());
             }
 
             WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rd6l6:\"]")));
-            passwordField.sendKeys("ikan1");
+            passwordField.sendKeys("kami1");
             WebElement passwordErrorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[6]/div[2]/p")));
             if (passwordErrorMessage.isDisplayed()) {
                 System.out.println("Error in Password: " + passwordErrorMessage.getText());
             }
 
             WebElement confirmPasswordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rf6l6:\"]")));
-            confirmPasswordField.sendKeys("ikan23");
+            confirmPasswordField.sendKeys("kami23");
             WebElement confirmPasswordErrorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[7]/div[2]/p")));
             if (confirmPasswordErrorMessage.isDisplayed()) {
                 System.out.println("Error in Confirm Password: " + confirmPasswordErrorMessage.getText());
