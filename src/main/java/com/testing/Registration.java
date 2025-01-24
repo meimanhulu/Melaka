@@ -31,7 +31,7 @@ public class Registration {
     public static void testRegistrationProcess(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         try {
-            // Input valid data
+
             WebElement nameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R36l6:\"]")));
             nameField.sendKeys("Saikoji");
 
