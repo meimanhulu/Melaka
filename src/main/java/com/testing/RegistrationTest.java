@@ -18,14 +18,9 @@ public class RegistrationTest {
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(15));
         driver.manage().window().maximize();
         driver.get("https://dashboard.melaka.app/register");
-
+        
         try {
             testValidInput(driver);
-            testRadioButtonSelection(driver, "distributor");
-            testRadioButtonSelection(driver, "tokoRetail");
-            testRadioButtonSelection(driver, "brand");
-            testRadioButtonSelection(driver, "penjualOnline");
-
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
@@ -34,55 +29,68 @@ public class RegistrationTest {
     }
 
     public static void testValidInput(WebDriver driver) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         
         try {
-            WebElement nameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Nama']")));
-            nameField.sendKeys("Ryland");
+            // Mengisi kolom dengan data yang salah untuk memicu error
+            WebElement nameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R36l6:\"]")));
+            nameField.sendKeys("fssa"); // Menggunakan input yang salah untuk Nama
 
-            WebElement phoneField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Nomor Telepon']")));
-            phoneField.sendKeys("82189678292");
+            WebElement phoneField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R156l6:\"]")));
+            phoneField.sendKeys("+62 7381"); // Format telepon yang salah
 
-            WebElement businessNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Nama Bisnis']")));
-            businessNameField.sendKeys("Toko Kue");
+            WebElement businessNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R76l6:\"]")));
+            businessNameField.sendKeys(""); // Tidak mengisi Nama Bisnis
 
-            WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Email']")));
-            emailField.sendKeys("meiman@gmail.com");
+            WebElement radioButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"retail_store-:Ra96l6:\"]")));
+            radioButton.click();
 
-            WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Kata Sandi']")));
-            passwordField.sendKeys("Suriname132");
+            WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rb6l6:\"]")));
+            emailField.sendKeys("ruhykgmail.com"); // Email dengan format salah
 
-            WebElement confirmPasswordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//input[@placeholder='Konfirmasi Kata Sandi']")));
-            confirmPasswordField.sendKeys("Suriname132");
+            WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rd6l6:\"]")));
+            passwordField.sendKeys("Hulkdola"); // Password tidak memenuhi ketentuan
 
-            WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//input[@type='checkbox']")));
+            WebElement confirmPasswordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rf6l6:\"]")));
+            confirmPasswordField.sendKeys("Hulkdola");
+
+            WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"register__checkbox__tnc\"]")));
             checkbox.click();
 
-            WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//button[text()='Daftar']")));
-            submitButton.click();
-            wait.until(ExpectedConditions.urlContains("dashboard"));
+            // Menunggu tombol Submit
+            WebElement submitButton = wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/button")));
 
-            if (driver.getCurrentUrl().contains("dashboard")) {
-                System.out.println("Valid Input Test Passed");
+            // Memeriksa apakah tombol Submit dinonaktifkan
+            if (!submitButton.isEnabled()) {
+                System.out.println("Submit button is disabled due to invalid input.");
             } else {
-                System.out.println("Valid Input Test Failed");
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
+                // Jika tombol submit bisa diklik, klik tombol submit
+                submitButton.click();
+                wait.until(ExpectedConditions.urlContains("dashboard"));
 
-    public static void testRadioButtonSelection(WebDriver driver, String buttonId) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-
-        try {
-            WebElement button = wait.until(ExpectedConditions.elementToBeClickable(By.id(buttonId)));
-            button.click();
-            if (button.isSelected()) {
-                System.out.println(buttonId + " is selected.");
-            } else {
-                System.out.println(buttonId + " is NOT selected.");
+                if (driver.getCurrentUrl().contains("dashboard")) {
+                    System.out.println("Valid Input Test Passed");
+                } else {
+                    System.out.println("Valid Input Test Failed");
+                }
             }
+            
+            // Verifikasi apakah pesan kesalahan muncul di setiap kolom yang salah
+            WebElement nameErrorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[1]/div[2]/p")));
+            System.out.println("Name Error: " + nameErrorMessage.getText());
+
+            WebElement phoneErrorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[2]/div/div[2]/p")));
+            System.out.println("Phone Error: " + phoneErrorMessage.getText());
+
+            WebElement businessNameErrorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[3]/div[2]/p")));
+            System.out.println("Business Name Error: " + businessNameErrorMessage.getText());
+
+            WebElement emailErrorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[5]/div[2]/p")));
+            System.out.println("Email Error: " + emailErrorMessage.getText());
+
+            WebElement passwordErrorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[6]/div[2]/p")));
+            System.out.println("Password Error: " + passwordErrorMessage.getText());
+
         } catch (Exception e) {
             e.printStackTrace();
         }
