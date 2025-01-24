@@ -6,6 +6,13 @@
     "configurations": [
         {
             "type": "java",
+            "name": "Registration",
+            "request": "launch",
+            "mainClass": "com.testing.Registration",
+            "projectName": "Melaka"
+        },
+        {
+            "type": "java",
             "name": "Current File",
             "request": "launch",
             "mainClass": "${file}"
