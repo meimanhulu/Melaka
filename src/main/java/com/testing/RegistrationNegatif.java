@@ -9,7 +9,7 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 
-public class Registration {
+public class RegistrationNegatif {
 
     public static void main(String[] args) {
         System.out.println("Selenium 4");
@@ -30,28 +30,59 @@ public class Registration {
 
     public static void testRegistrationProcess(WebDriver driver) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
+        boolean isFailure = false;
+        
         try {
-            // Input valid data
             WebElement nameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R36l6:\"]")));
-            nameField.sendKeys("Saikoji");
+            nameField.sendKeys("YUA");
+            WebElement errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[1]/div[2]/p")));
+            if (errorMessage == null) {
+                isFailure = true;
+                System.out.println("Error: Wajib diisi, min. 5 karakter.");
+            }
 
             WebElement phoneField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R156l6:\"]")));
-            phoneField.sendKeys("81286343680");
+            phoneField.sendKeys("08213");
+            errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[2]/div/div[2]/p")));
+            if (errorMessage == null) {
+                isFailure = true;
+                System.out.println("Error: Wajib diisi. Nomor telepon tidak boleh kurang dari 10 atau lebih dari 12 karakter.");
+            }
 
             WebElement businessNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R76l6:\"]")));
-            businessNameField.sendKeys("Igun Storek");
+            businessNameField.sendKeys("SUT");
+            errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[3]/div[2]/p")));
+            if (errorMessage == null) {
+                isFailure = true;
+                System.out.println("Error: Wajib diisi, nama bisnis tidak boleh kurang dari 5 karakter.");
+            }
 
-            WebElement businessTypeField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"online_seller-:Ri96l6:\"]")));
+            WebElement businessTypeField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"brand-:Re96l6:\"]")));
             businessTypeField.click();
 
             WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rb6l6:\"]")));
-            emailField.sendKeys("markus15@gmail.com");
+            emailField.sendKeys("syukurgmail.com");
+            errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[5]/div[2]/p")));
+            if (errorMessage == null) {
+                isFailure = true;
+                System.out.println("Error: Harap isi dengan format yang benar.");
+            }
 
             WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rd6l6:\"]")));
-            passwordField.sendKeys("Valid123#");
+            passwordField.sendKeys("Uk812");
+            errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[6]/div[2]/p")));
+            if (errorMessage == null) {
+                isFailure = true;
+                System.out.println("Error: Min. 8 karakter, harus kombinasi dari huruf dan angka.");
+            }
 
             WebElement confirmPasswordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rf6l6:\"]")));
-            confirmPasswordField.sendKeys("Valid123#");
+            confirmPasswordField.sendKeys("Uki123");
+            errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[7]/div[2]/p")));
+            if (errorMessage == null) {
+                isFailure = true;
+                System.out.println("Error: Belum sesuai dengan kata sandi.");
+            }
 
             WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"register__checkbox__tnc\"]")));
             if (!checkbox.isSelected()) {
@@ -63,12 +94,10 @@ public class Registration {
                 submitButton.click();
                 wait.until(ExpectedConditions.urlContains("dashboard"));
                 if (driver.getCurrentUrl().contains("dashboard")) {
-                    System.out.println("Registrasi Berhasil dilakukan.");
+                    System.out.println("Registrasi Gagal");
                 } else {
-                    System.out.println("Registrasi gagal, sistem tidak mengarahkan ke halaman yang sesuai.");
+                    System.out.println("Registrasi Berhasil.");
                 }
-            } else {
-                System.out.println("Tombol Daftar tidak aktif karena input tidak valid.");
             }
 
         } catch (Exception e) {

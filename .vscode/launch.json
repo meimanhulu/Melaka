@@ -7,6 +7,13 @@
         
         {
             "type": "java",
+            "name": "RegistrationNegatif",
+            "request": "launch",
+            "mainClass": "com.testing.RegistrationNegatif",
+            "projectName": "Melaka"
+        },
+        {
+            "type": "java",
             "name": "Registration",
             "request": "launch",
             "mainClass": "com.testing.Registration",
