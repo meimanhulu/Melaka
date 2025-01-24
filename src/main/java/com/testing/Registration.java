@@ -33,19 +33,19 @@ public class Registration {
         try {
             // Input valid data
             WebElement nameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R36l6:\"]")));
-            nameField.sendKeys("Dimsan");
+            nameField.sendKeys("Samidin");
 
             WebElement phoneField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R156l6:\"]")));
-            phoneField.sendKeys("81583143682");
+            phoneField.sendKeys("81287943607");
 
             WebElement businessNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R76l6:\"]")));
-            businessNameField.sendKeys("Toko Karuan");
+            businessNameField.sendKeys("Toko Kuning");
 
             WebElement businessTypeField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"online_seller-:Ri96l6:\"]")));
             businessTypeField.click();
 
             WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rb6l6:\"]")));
-            emailField.sendKeys("markus12@gmail.com");
+            emailField.sendKeys("markus03@gmail.com");
 
             WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rd6l6:\"]")));
             passwordField.sendKeys("Valid123#");
@@ -56,7 +56,6 @@ public class Registration {
             WebElement checkbox = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"register__checkbox__tnc\"]")));
             if (!checkbox.isSelected()) {
                 checkbox.click();
-                System.out.println("Checkbox Konfirmasi dicentang.");
             }
 
             WebElement submitButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/button")));
