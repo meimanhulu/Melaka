@@ -34,7 +34,7 @@ public class RegistrationNegatif {
         
         try {
             WebElement nameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R36l6:\"]")));
-            nameField.sendKeys("YUA");
+            nameField.sendKeys("Saha");
             WebElement errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[1]/div[2]/p")));
             if (errorMessage == null) {
                 isFailure = true;
@@ -42,7 +42,7 @@ public class RegistrationNegatif {
             }
 
             WebElement phoneField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R156l6:\"]")));
-            phoneField.sendKeys("08213");
+            phoneField.sendKeys("81388");
             errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[2]/div/div[2]/p")));
             if (errorMessage == null) {
                 isFailure = true;
@@ -50,7 +50,7 @@ public class RegistrationNegatif {
             }
 
             WebElement businessNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R76l6:\"]")));
-            businessNameField.sendKeys("SUT");
+            businessNameField.sendKeys("Yel");
             errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[3]/div[2]/p")));
             if (errorMessage == null) {
                 isFailure = true;
@@ -61,7 +61,7 @@ public class RegistrationNegatif {
             businessTypeField.click();
 
             WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rb6l6:\"]")));
-            emailField.sendKeys("syukurgmail.com");
+            emailField.sendKeys("markus22gmail.com");
             errorMessage = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[5]/div[2]/p")));
             if (errorMessage == null) {
                 isFailure = true;

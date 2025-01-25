@@ -33,19 +33,19 @@ public class Registration {
         try {
 
             WebElement nameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R36l6:\"]")));
-            nameField.sendKeys("Saikoji");
+            nameField.sendKeys("Sahacuy");
 
             WebElement phoneField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R156l6:\"]")));
-            phoneField.sendKeys("81286343680");
+            phoneField.sendKeys("81391103602");
 
             WebElement businessNameField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R76l6:\"]")));
-            businessNameField.sendKeys("Igun Storek");
+            businessNameField.sendKeys("Yellow Store");
 
             WebElement businessTypeField = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"online_seller-:Ri96l6:\"]")));
             businessTypeField.click();
 
             WebElement emailField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rb6l6:\"]")));
-            emailField.sendKeys("markus15@gmail.com");
+            emailField.sendKeys("markus29@gmail.com");
 
             WebElement passwordField = wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rd6l6:\"]")));
             passwordField.sendKeys("Valid123#");
