@@ -18,7 +18,7 @@ public class RegistrationNegatif {
         System.setProperty("webdriver.chrome.driver", "C:\\chromedriver-win64\\chromedriver-win64\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
         driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
-        driver.manage().window().maximize();
+        // driver.manage().window().maximize();
         driver.get("https://dashboard.melaka.app/register");
 
         try {
@@ -32,15 +32,15 @@ public class RegistrationNegatif {
 
     public static void testRegistrationProcess(WebDriver driver) {
         FluentWait<WebDriver> fluentWait = new FluentWait<>(driver)
-            .withTimeout(Duration.ofSeconds(40)) // Set timeout to 30 seconds
-            .pollingEvery(Duration.ofMillis(500)) // Poll every 500 milliseconds
+            .withTimeout(Duration.ofSeconds(30)) 
+            .pollingEvery(Duration.ofMillis(500))
             .ignoring(NoSuchElementException.class);
 
         boolean isFailure = false;
 
         try {
             WebElement nameField = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R36l6:\"]")));
-            nameField.sendKeys("Sama");
+            nameField.sendKeys("Aji");
             WebElement errorMessage = fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[1]/div[2]/p")));
             if (errorMessage.isDisplayed()) {
                 isFailure = true;
@@ -48,7 +48,7 @@ public class RegistrationNegatif {
             }
 
             WebElement phoneField = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R156l6:\"]")));
-            phoneField.sendKeys("81345");
+            phoneField.sendKeys("84170");
             errorMessage = fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[2]/div/div[2]/p")));
             if (errorMessage.isDisplayed()) {
                 isFailure = true;
@@ -56,18 +56,18 @@ public class RegistrationNegatif {
             }
 
             WebElement businessNameField = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:R76l6:\"]")));
-            businessNameField.sendKeys("Lop");
+            businessNameField.sendKeys("Spy");
             errorMessage = fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[3]/div[2]/p")));
             if (errorMessage.isDisplayed()) {
                 isFailure = true;
                 System.out.println("Error: Wajib diisi, nama bisnis tidak boleh kurang dari 5 karakter.");
             }
 
-            WebElement businessTypeField = fluentWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"brand-:Re96l6:\"]")));
+            WebElement businessTypeField = fluentWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"online_seller-:Ri96l6:\"]")));
             businessTypeField.click();
 
             WebElement emailField = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rb6l6:\"]")));
-            emailField.sendKeys("markus1gmail.com");
+            emailField.sendKeys("markes62gmail.com");
             errorMessage = fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[5]/div[2]/p")));
             if (errorMessage.isDisplayed()) {
                 isFailure = true;
@@ -75,22 +75,22 @@ public class RegistrationNegatif {
             }
 
             WebElement passwordField = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rd6l6:\"]")));
-            passwordField.sendKeys("Ukko2");
+            passwordField.sendKeys("Uk812");
             errorMessage = fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[6]/div[2]/p")));
             if (errorMessage.isDisplayed()) {
                 isFailure = true;
                 System.out.println("Error: Min. 8 karakter, harus kombinasi dari huruf dan angka.");
             }
 
-            WebElement confirmPasswordField = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"input-:Rf6l6:\"]")));
-            confirmPasswordField.sendKeys("Uki912");
+            WebElement confirmPasswordField = fluentWait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/div/div/div[2]/div[2]/div/form/div[7]/div[1]/input")));
+            confirmPasswordField.sendKeys("Ukikwa");
 
             WebElement errorMessageConfirm = null;
             try {
 
-                errorMessageConfirm = fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//p[contains(text(), 'Belum sesuai dengan kata sandi')]")));
+                errorMessageConfirm = fluentWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/div[7]/div[2]/p")));
             } catch (TimeoutException e) {
-                System.out.println("Error: Belum sesuai dengan kata sandi.");
+                System.out.println("Error message for confirm password not found or not visible.");
             }
 
             if (errorMessageConfirm != null && errorMessageConfirm.isDisplayed()) {
@@ -98,19 +98,19 @@ public class RegistrationNegatif {
                 System.out.println("Error: Belum sesuai dengan kata sandi.");
             }
 
-            WebElement checkbox = fluentWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"register__checkbox__tnc\"]")));
+            WebElement checkbox = fluentWait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div/div/div[2]/div[2]/div/form/div[8]/div/input")));
             if (!checkbox.isSelected() && isFailure) {
                 checkbox.click();
             }
 
-            WebElement submitButton = fluentWait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"__next\"]/div/div[2]/div[2]/div/form/button")));
+            WebElement submitButton = fluentWait.until(ExpectedConditions.elementToBeClickable(By.xpath("/html/body/div/div/div[2]/div[2]/div/form/button")));
             if (submitButton.isEnabled()) {
                 submitButton.click();
                 fluentWait.until(ExpectedConditions.urlContains("dashboard"));
                 if (driver.getCurrentUrl().contains("dashboard")) {
-                    System.out.println("Registrasi Berhasil.");
-                } else {
                     System.out.println("Registrasi Gagal.");
+                } else {
+                    System.out.println("Registrasi Berhasil.");
                 }
             } else {
                 System.out.println("Tombol Submit tidak aktif.");
